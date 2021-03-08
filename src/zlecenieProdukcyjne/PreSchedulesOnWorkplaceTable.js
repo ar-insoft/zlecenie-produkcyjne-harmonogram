@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 
-export const SchedulesOnWorkplaceTable = ({ params, callbacks }) => {
+export const PreSchedulesOnWorkplaceTable = ({ params, callbacks }) => {
     const { preSchedulesOnWorkplace } = params
     //console.log('SchedulesOnWorkplaceTable', preSchedulesOnWorkplace) 
     const columns = [

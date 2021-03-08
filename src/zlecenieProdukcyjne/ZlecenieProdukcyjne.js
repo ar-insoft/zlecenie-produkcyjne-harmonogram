@@ -3,13 +3,15 @@ import { Layout, Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined, ApartmentOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import {DataProvider} from './DataProvider'
-import {SchedulesOnWorkplaceTable} from './SchedulesOnWorkplaceTable'
+import {PreSchedulesOnWorkplaceTable} from './PreSchedulesOnWorkplaceTable'
+import {ProductionProductsTree} from './ProductionProductTree'
 
 const { Header, Footer, Sider, Content } = Layout;
 
 export const ZlecenieProdukcyjne = () => {
     const parsedUrl = new URL(window.location.href)
     const idZlecenie = parsedUrl.searchParams.get("id") || "160334661"
+    const [selectedMenu, setSelectedMenu] = useState("pre_schedules_on_workplace")
 
     const [preSchedulesOnWorkplace, setPreSchedulesOnWorkplace] = useState([])
     const [productionProducts, setProductionProducts] = useState([])
@@ -51,20 +53,35 @@ export const ZlecenieProdukcyjne = () => {
         productionProducts,
     }
 
+    const menuHandleClick = e => {
+        //console.log('click ', e);
+        setSelectedMenu(e.key);
+    };
+
+    const renderSwitch = () => {
+        switch (selectedMenu) {
+            case 'pre_schedules_on_workplace':
+                return <PreSchedulesOnWorkplaceTable params={params} callbacks={callbacks} />;
+            case 'production_products_tree':
+                return <ProductionProductsTree params={params} callbacks={callbacks} />;
+            default:
+                return 'default';
+        }
+    }
     return (
         <Layout theme="light">
             <div className="ant-layout">
-                Header 
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                <Menu theme="dark" mode="horizontal" selectedKeys={[selectedMenu]} onClick={menuHandleClick}>
                     <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2" icon={<AppstoreOutlined />}>preSchedules On Workplace Tab</Menu.Item>
-                    <Menu.Item key="3" icon={<ApartmentOutlined />}>nav 3</Menu.Item>
+                    <Menu.Item key="pre_schedules_on_workplace" icon={<AppstoreOutlined />}>preSchedules On Workplace Tab</Menu.Item>
+                    <Menu.Item key="production_products_tree" icon={<ApartmentOutlined />}>Production products tree</Menu.Item>
                 </Menu>
             </div>
             <Layout>
                 <Sider theme="light">Sider</Sider>
                 <Content>
-                    <SchedulesOnWorkplaceTable params={params} callbacks={callbacks} />
+                    {/* <PreSchedulesOnWorkplaceTable params={params} callbacks={callbacks} /> */}
+                    {renderSwitch()}
                 </Content>
             </Layout>
             <Footer>
