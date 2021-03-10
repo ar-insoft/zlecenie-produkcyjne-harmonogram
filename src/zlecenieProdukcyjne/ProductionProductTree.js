@@ -20,7 +20,8 @@ export const ProductionProductsTree = ({ params, callbacks }) => {
 
     const listToTree = () => {
         const root = byIdParent('0')[0]
-        return [ppToTreeAdapter(root)]
+        const rootTree = ppToTreeAdapter(root)
+        return [rootTree]
     }
 
     const onSelect = (selectedKeys, info) => {
@@ -34,7 +35,7 @@ export const ProductionProductsTree = ({ params, callbacks }) => {
     return (
         <Tree
             checkable showLine
-            //defaultExpandedKeys={['0-0-0', '0-0-1']}
+            defaultExpandedKeys={[byIdParent('0')[0].id]}
             //defaultSelectedKeys={['0-0-0', '0-0-1']}
             //defaultCheckedKeys={['0-0-0', '0-0-1']}
             onSelect={onSelect}

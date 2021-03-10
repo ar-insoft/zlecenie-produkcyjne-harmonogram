@@ -70,9 +70,12 @@ export const ZlecenieProdukcyjne = () => {
     }
     return (
         <Layout theme="light">
-            <div className="ant-layout">
+            {/* idZlecenie[{idZlecenie}] preSchedulesOnWorkplace[{preSchedulesOnWorkplace.length}]
+                productionProducts[{productionProducts.length}] systemObjects[{systemObjects.length}]
+                operationsPreSchedule [{operationsPreSchedule.length}] */}
+            <div className="ant-layout" data-order-id="{idZlecenie}">
                 <Menu theme="dark" mode="horizontal" selectedKeys={[selectedMenu]} onClick={menuHandleClick}>
-                    <Menu.Item key="1">nav 1</Menu.Item>
+                    <Menu.Item key="1">nav {idZlecenie}</Menu.Item>
                     <Menu.Item key="pre_schedules_on_workplace" icon={<AppstoreOutlined />}>preSchedules On Workplace Tab</Menu.Item>
                     <Menu.Item key="production_products_tree" icon={<ApartmentOutlined />}>Production products tree</Menu.Item>
                 </Menu>
@@ -86,9 +89,6 @@ export const ZlecenieProdukcyjne = () => {
             </Layout>
             <Footer>
                 Footer
-                idZlecenie[{idZlecenie}] preSchedulesOnWorkplace[{preSchedulesOnWorkplace.length}]
-                productionProducts[{productionProducts.length}] systemObjects[{systemObjects.length}]
-                operationsPreSchedule [{operationsPreSchedule.length}]
             </Footer>
         </Layout>
     )
