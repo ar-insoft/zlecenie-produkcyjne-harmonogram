@@ -2,7 +2,7 @@
   "name": "zlecenie-produkcyjne-harmonogram",
   "homepage": "http://proedims:8080/eoffice/react/zlecenie_produkcyjne_harmonogram",
   "proxy": "http://proedims:8080",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
