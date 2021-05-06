@@ -1,8 +1,14 @@
 import { Table } from 'antd';
 
-export const PreSchedulesOnWorkplaceTable = ({ params, callbacks }) => {
-    const { preSchedulesOnWorkplace } = params
-    //console.log('SchedulesOnWorkplaceTable', preSchedulesOnWorkplace) 
+export const PreSchedulesOnWorkplaceTable = ({ params, callbacks, preOrSchedulesOnWorkplace }) => {
+    //const { preSchedulesOnWorkplace } = params
+    //const preOrSchedulesOnWorkplace = params.dane
+
+    const findSoId = id_operation => {
+        const operation = preOrSchedulesOnWorkplace.find(oper => oper.id === id_operation)
+        return operation.id_so_operation
+    }
+
     const columns = [
         // {
         //     title: 'id',
@@ -14,7 +20,8 @@ export const PreSchedulesOnWorkplaceTable = ({ params, callbacks }) => {
             dataIndex: 'id_operation',
             key: 'id_operation',
             sorter: (a, b) => a.id_operation - b.id_operation,
-            render: id_operation => callbacks.soIndexTitle(callbacks.operationPreSchedule(id_operation).id_so_operation),
+            //render: id_operation => callbacks.soIndexTitle(callbacks.operationPreSchedule(id_operation).id_so_operation),
+            render: id_operation => callbacks.soIndexTitle(findSoId(id_operation)),
         },
         {
             title: 'workplace',
@@ -44,6 +51,6 @@ export const PreSchedulesOnWorkplaceTable = ({ params, callbacks }) => {
     ];
 
     return (
-        <Table dataSource={preSchedulesOnWorkplace} columns={columns} rowKey='id' />
+        <Table dataSource={preOrSchedulesOnWorkplace} columns={columns} rowKey='id' />
     )
 }
