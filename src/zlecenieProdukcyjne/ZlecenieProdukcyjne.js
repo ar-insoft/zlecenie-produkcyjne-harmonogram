@@ -11,7 +11,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export const ZlecenieProdukcyjne = () => {
     const parsedUrl = new URL(window.location.href)
-    const idZlecenie = parsedUrl.searchParams.get("id") || "160471147"
+    const idZlecenie = parsedUrl.searchParams.get("id") || "160891864"
     const [selectedMenu, setSelectedMenu] = useState("pre_schedules_on_workplace")
 
     const [orderProductionSystemObject, setOrderProductionSystemObject] = useState()

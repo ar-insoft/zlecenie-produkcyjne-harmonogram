@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.objectEntries {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.objectEntry {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 5px;
+}
+.objectEntryValue {
+  margin-left: 2px;
+  font-weight: bold;
+}

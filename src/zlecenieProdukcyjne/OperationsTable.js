@@ -1,4 +1,5 @@
 import { Table } from 'antd';
+import Tools from './Tools'
 
 export const OperationsTable = ({ params, callbacks, operacje }) => {
     //const { operationsPreSchedule, operationsSchedule } = params
@@ -11,8 +12,7 @@ export const OperationsTable = ({ params, callbacks, operacje }) => {
 
     const displayOperation = id_operation => {
         const operation = operacje.find(oper => oper.id === id_operation)
-        return Object.entries(operation).map(ent => '[' + ent[0] + ': ' + ent[1] + ']')
-            .reduce((previousValue, currentValue) => previousValue +  currentValue)
+        return Tools.displayObjectEntriesAsTags(operation)
     }
 
     const columns = [
@@ -31,9 +31,27 @@ export const OperationsTable = ({ params, callbacks, operacje }) => {
             render: id_so_workplace => callbacks.soIndexTitle(id_so_workplace),
         },
         {
-            title: 'id',
+            title: 'planned_start',
+            dataIndex: ['planned_start_date', 'planned_start_time'],
+            key: 'planned_start_date',
+            sorter: (a, b) => {
+                console.log('sort', a,b)
+                //const nameA = a.toUpperCase();
+                //const nameB = b.toUpperCase();
+                if (a < b) {
+                    return -1;
+                }
+                if (a > b) {
+                    return 1;
+                }
+                return 0;
+            },
+            render: (text, record) => record.planned_start_date + ' ' + record.planned_start_time,
+        },
+        {
+            title: 'fields',
             dataIndex: 'id',
-            key: 'id',
+            key: 'fields',
             render: id => displayOperation(id),
         },
         // {
