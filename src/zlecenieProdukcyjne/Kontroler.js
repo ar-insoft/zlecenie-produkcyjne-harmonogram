@@ -3,13 +3,14 @@ import { Layout, Menu, Avatar, Badge } from 'antd';
 import { MailOutlined, AppstoreOutlined, ApartmentOutlined, UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import {DataProvider} from './DataProvider'
+import { Zlecenie} from './Zlecenie'
 import {PreSchedulesOnWorkplaceTable} from './PreSchedulesOnWorkplaceTable'
 import {ProductionProductsTree} from './ProductionProductTree'
 import { OperationsTable} from './OperationsTable'
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export const ZlecenieProdukcyjne = () => {
+export const Kontroler = () => {
     const parsedUrl = new URL(window.location.href)
     const idZlecenie = parsedUrl.searchParams.get("id") || "160891864"
     const [selectedMenu, setSelectedMenu] = useState("pre_schedules_on_workplace")
@@ -56,6 +57,7 @@ export const ZlecenieProdukcyjne = () => {
     }
 
     const params = {
+        orderProductionSystemObject,
         preSchedulesOnWorkplace, schedulesOnWorkplace,
         productionProducts,
         operationsPreSchedule, operationsSchedule,
@@ -77,9 +79,10 @@ export const ZlecenieProdukcyjne = () => {
             case 'operations_schedule':
                 return <OperationsTable operacje={operationsSchedule} params={params} callbacks={callbacks} />;
             default:
-                return <>
-                    {orderProductionSystemObject && (orderProductionSystemObject.object_index +' '+ orderProductionSystemObject.title)}
-                </>
+                return <Zlecenie params={params} callbacks={callbacks} />
+                // return <>
+                //     {orderProductionSystemObject && (orderProductionSystemObject.object_index +' '+ orderProductionSystemObject.title)}
+                // </>
         }
     }
     return (
@@ -138,6 +141,9 @@ export const ZlecenieProdukcyjne = () => {
                             sOW
                         </Avatar>
                     </Badge>
+                </span>
+                <span className="avatar-item" style={{ margin: "0 10px" }}>
+                    {new Date().toISOString()} / {new Date().toLocaleString()}
                 </span>
                 {/* <Badge count={-1}>
                     <Avatar shape="square" icon={<UserOutlined />} />

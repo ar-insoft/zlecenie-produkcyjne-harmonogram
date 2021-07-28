@@ -40,7 +40,7 @@
 .objectEntries {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: left;
 }
 
 .objectEntry {
@@ -51,4 +51,23 @@
 .objectEntryValue {
   margin-left: 2px;
   font-weight: bold;
+}
+
+.objectEntryGrid{
+  display: flex;
+  flex-wrap: wrap;
+}
+.objectEntryGridName {
+  padding-left: 2px;
+  padding-right: 4px;
+  color: #1d39c4;
+  background: #f0f5ff;
+  border-color: #adc6ff;
+}
+.objectEntryGridValue {
+  padding-left: 4px;
+  padding-right: 2px;
+  color: #096dd9;
+  background: #e6f7ff;
+  border-color: #91d5ff;
 }
